@@ -10,6 +10,7 @@ Performance test suite that uses **Locust** to simulate load against a Flask app
 - A pytest test runs Locust headless, parses the statistics, and asserts that the 95th percentile latency is below a defined SLA (2000 ms).
 - An HTML report is generated for both Locust and pytest.
 - CI/CD runs the entire pipeline on every push and daily.
+-The performance test runs automatically in CI and fails if the p95 latency exceeds the SLA.
 
 ## How to run locally
 
