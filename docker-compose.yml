@@ -1,0 +1,18 @@
+version: '3'
+services:
+  target:
+    build: ./app
+    ports:
+      - "5000:5000"
+  master:
+    image: locustio/locust
+    volumes:
+      - ./tests:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --master --expect-workers=1
+    ports:
+      - "8089:8089"
+  worker:
+    image: locustio/locust
+    volumes:
+      - ./tests:/mnt/locust
+    command: -f /mnt/locust/locustfile.py --worker --master-host master
