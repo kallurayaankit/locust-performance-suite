@@ -21,9 +21,14 @@ jobs:
           pip install -r requirements.txt
           pip install -r app/requirements.txt
       - name: Start target Flask app in background
-        run: python app/app.py &
+        run: nohup python app/app.py > flask.log 2>&1 &
       - name: Wait for app to be ready
-        run: sleep 3
+        run: |
+          for i in $(seq 1 10); do
+            echo "Attempt $i..."
+            curl -s http://localhost:5000/fast && break
+            sleep 2
+          done
       - name: Run Locust performance test
         run: pytest -v --html=reports/pytest_report.html --self-contained-html
       - name: Upload Locust report
