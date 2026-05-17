@@ -14,3 +14,6 @@ def slow():
     delay = random.uniform(2, 5)
     time.sleep(delay)
     return f"Slow response after {delay:.2f}s"
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000, debug=False)
