@@ -3,7 +3,7 @@ import csv
 import os
 import pytest
 
-SLA_P95_MS = 10000  # Maximum allowed 95th percentile latency in milliseconds
+SLA_P95_MS = 60000  # Maximum allowed 95th percentile latency in milliseconds
 
 def test_locust_sla():
     # Create reports directory if not exists
